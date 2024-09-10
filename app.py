@@ -1,7 +1,19 @@
 import streamlit as st
 import sqlite3
 from transformers import pipeline
+import streamlit as st
+from transformers import pipeline
 
+# Initialiser un pipeline de Hugging Face (exemple avec la génération de texte)
+generator = pipeline('text-generation', model='gpt2')
+
+# Créer une interface simple
+st.title("Hugging Face + Streamlit")
+input_text = st.text_input("Entrez un texte")
+
+if input_text:
+    output = generator(input_text)
+    st.write(output)
 # Connexion à la base de données SQLite
 conn = sqlite3.connect('users.db')
 c = conn.cursor()
